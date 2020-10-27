@@ -22,6 +22,13 @@ function init() {
     camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.set(0,0.5,15);
 
+    window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+    
+        camera.updateProjectionMatrix();
+    })
+
     const amient = new THREE.AmbientLight(0x404040, 5);
     scene.add(amient);
 
